@@ -9,7 +9,7 @@ namespace CMP1903_A1_2324
     internal class ThreeOrMore
     {
         // starts an instance of the Three Or More game
-        internal void RunGame(string playerType)
+        internal void RunGame(Statistics stats, string playerType)
         {
             Console.WriteLine("Three Or More game instantiated");
             
@@ -52,10 +52,24 @@ namespace CMP1903_A1_2324
             if (points1 >= 20)
             {
                 Console.WriteLine("Player1 wins with " + points1 + " points!");
+                
+                // increment number of Three Or More games won by player1 in statistics
+                stats.ThreeOrMoreStatPlayer1Wins();
             }
             else
             {
                 Console.WriteLine("Player2 wins with " + points2 + " points!");
+                
+                if (playerType == "computer")
+                {
+                    // increment number of Three Or More games won by computer in statistics
+                    stats.ThreeOrMoreStatComputerWins();
+                }
+                else
+                {
+                    // increment number of Three Or More games won by player2 in statistics
+                    stats.ThreeOrMoreStatPlayer2Wins();
+                }
             }
             
         }

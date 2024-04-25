@@ -9,7 +9,7 @@ namespace CMP1903_A1_2324
     internal class SevensOut
     {
         // starts an instance of the sevens out game
-        internal void RunGame(string playerType)
+        internal void RunGame(Statistics stats, string playerType)
         {
             Console.WriteLine("\nSevens Out game instantiated");
 
@@ -28,7 +28,7 @@ namespace CMP1903_A1_2324
                 if (score1 != 7)
                 {
                     // get player1 enter to roll dice
-                    Console.WriteLine("Player1 press enter to roll dice");
+                    Console.WriteLine("Player 1 press enter to roll dice");
                     Console.ReadLine();
                     
                     // roll dice method
@@ -48,12 +48,12 @@ namespace CMP1903_A1_2324
                     if (playerType == "computer")
                     {
                         // get computer to roll dice
-                        Console.WriteLine("Player2 (Computer) is rolling dice");
+                        Console.WriteLine("Player 2 (Computer) is rolling dice");
                     }
                     else
                     {
                         // get player2 enter to roll dice
-                        Console.WriteLine("Player2 press enter to roll dice");
+                        Console.WriteLine("Player 2 press enter to roll dice");
                         Console.ReadLine();
                     }
 
@@ -84,10 +84,30 @@ namespace CMP1903_A1_2324
             if (total1 > total2)
             {
                 Console.WriteLine("Player 1 wins with score " + total1);
+                
+                // increment number of sevens out games won by player1 in statistics
+                stats.SevensOutStatPlayer1Wins();
+                
+                // check if high score has been beaten and update if necessary in statistics
+                stats.SevensOutStatHighScore(total1);
             }
             else if (total2 > total1)
             {
                 Console.WriteLine("Player 2 wins with score " + total2);
+                
+                if (playerType == "computer")
+                {
+                    // increment number of sevens out games won by computer in statistics
+                    stats.SevensOutStatComputerWins();
+                }
+                else
+                {
+                    // increment number of sevens out games won by player2 in statistics
+                    stats.SevensOutStatPlayer2Wins();
+                }
+                
+                // check if high score has been beaten and update if necessary in statistics
+                stats.SevensOutStatHighScore(total2);
             }
             else
             {

@@ -11,6 +11,7 @@ namespace CMP1903_A1_2324
         // main method to run the program
         static void Main(string[] args)
         {
+            Statistics stats = new Statistics();
             var userInput = 0;
             // loop until user enters a valid input of one of the below menu options
             while (true)
@@ -51,7 +52,10 @@ namespace CMP1903_A1_2324
                     
                     // instantiate the Sevens Out game
                     SevensOut sevensOut = new SevensOut();
-                    sevensOut.RunGame(choice1);
+                    sevensOut.RunGame(stats, choice1);
+                    
+                    // increment number of sevens out games played in statistics
+                    stats.SevensOutStatNumberOfGamesPlayed();
                     break;
                 
                 case 2:
@@ -60,12 +64,32 @@ namespace CMP1903_A1_2324
                     
                     // instantiate the Three Or More game
                     ThreeOrMore threeOrMore = new ThreeOrMore();
-                    threeOrMore.RunGame(choice2);
+                    threeOrMore.RunGame(stats, choice2);
+                    
+                    // increment number of three or more games played in statistics
+                    stats.ThreeOrMoreStatNumberOfGamesPlayed();
                     break;
-                
+
                 case 3:
-                    // view stats data  //todo 
-                    Console.WriteLine("Viewing statistics data");
+                    // read and display statistics data
+                    var currentStats = stats.ReadStatistics();
+                    Console.WriteLine("Statistics data, where 0 is displayed, no data has been recorded for that statistic.\n");
+                    
+                    // display statistics data for Sevens Out game
+                    Console.WriteLine("Sevens Out statistics: ");
+                    Console.WriteLine("Number of games played: " + currentStats[0]);
+                    Console.WriteLine("Number of games won by player1: " + currentStats[1]);
+                    Console.WriteLine("Number of games won by player2: " + currentStats[2]);
+                    Console.WriteLine("Number of games won by computer: " + currentStats[3]);
+                    Console.WriteLine("High score: " + currentStats[4]);
+                    
+                    // display statistics data for Three Or More game
+                    Console.WriteLine("\nThree or more statistics:");
+                    Console.WriteLine("Number of games played: " + currentStats[5]);
+                    Console.WriteLine("Number of games won by player1: " + currentStats[6]);
+                    Console.WriteLine("Number of games won by player2: " + currentStats[7]);
+                    Console.WriteLine("Number of games won by computer: " + currentStats[8]);
+                    
                     break;
                 case 4:
                     // perform tests in testing class  //todo
