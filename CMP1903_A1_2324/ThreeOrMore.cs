@@ -198,6 +198,60 @@ namespace CMP1903_A1_2324
             return points;
         }
         
-        // todo test version of RollDice method
+        // test method to check RollDice returns correct points
+        internal int TestRollDice(int points)
+        {
+            // string to store the test dice values
+            var diceValues = "11111";
+            
+            // counter to increment for each dice value
+            var counter = 0;
+            
+            // check for 2,3,4 or 5 of a kind
+            foreach (var value in diceValues)
+            {
+                counter++;
+                
+                // if 5 of a kind
+                if (diceValues.Count(x => x == value) >= 5)
+                {
+                    points += 12;
+                    break;
+                }
+                
+                // if 4 of a kind
+                if (diceValues.Count(x => x == value) >= 4)
+                {
+                    points += 6;
+                    break;
+                }
+                
+                // if 3 of a kind
+                if (diceValues.Count(x => x == value) >= 3){
+                    points += 3;
+                    break;
+                }
+                
+                // if 2 of a kind
+                if (diceValues.Count(x => x == value) >= 2){
+                    var choice = "1";
+                    
+                    // rethrow all dice
+                    if (choice == "1")
+                    {
+                        points = TestRollDice(points);
+                    }
+                    break;
+                }
+                
+                // if none of a kind
+                if (counter == 5)
+                {
+                }
+            }
+            
+            return points;
+        }
+        
     }
 }

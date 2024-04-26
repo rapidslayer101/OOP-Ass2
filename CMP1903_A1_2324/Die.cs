@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace CMP1903_A1_2324
 {
+    // Die class
     internal class Die
     {
         // Die value Property
@@ -18,5 +19,21 @@ namespace CMP1903_A1_2324
             return _dieValue;
         }
 
+    }
+    
+    // DieRoller class inherits from Die class
+    class DieRoller : Die
+    {
+        // Roll multiple dice method
+        public List<int> RollMultiple(Random random, int numberOfRolls)
+        {
+            // roll NumberOfRolls dice and add to list
+            var rollList = new List<int>();
+            for (var i = 0; i < numberOfRolls; i++)
+            {
+                rollList.Add(Roll(random));
+            }
+            return rollList;
+        }
     }
 }

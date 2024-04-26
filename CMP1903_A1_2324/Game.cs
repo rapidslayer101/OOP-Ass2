@@ -11,8 +11,10 @@ namespace CMP1903_A1_2324
         // main method to run the program
         static void Main(string[] args)
         {
+            // instantiate the statistics class
             var stats = new Statistics();
             var userInput = 0;
+            
             // loop until user enters a valid input of one of the below menu options
             while (true)
             {

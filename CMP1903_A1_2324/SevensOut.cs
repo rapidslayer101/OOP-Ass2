@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Remoting.Proxies;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -119,18 +120,18 @@ namespace CMP1903_A1_2324
         private static (int, int) RollDice(int total, string player)
         {
             // create a new dice object
-            var die1 = new Die();
-            var die2 = new Die();
-
+            var dies = new DieRoller();
+            
             // add 1-millisecond delay to ensure random seed is different
             System.Threading.Thread.Sleep(1);
             
             // create random object
             var random = new Random();
             
-            // roll 2 dice by calling the RollDice method
-            var die1Value = die1.Roll(random);
-            var die2Value = die2.Roll(random);
+            // roll 2 dice by calling the RollMultiple method
+            var rollList = dies.RollMultiple(random, 2);
+            var die1Value = rollList[0];
+            var die2Value = rollList[1];
 
             // sum the two dice rolls
             var score = die1Value + die2Value;
@@ -152,10 +153,26 @@ namespace CMP1903_A1_2324
             return (total, score);
         }
         
-        // todo test version of RollDice method
-        public void RunTest()
+        // test method to check RollDice sum = 7
+        public int TestRollDice(int total)
         {
-            //
+            // pretend the dice rolls are 4 and 3
+            const int die1Value = 4;
+            const int die2Value = 3;
+            
+            // sum the two dice rolls
+            var score = die1Value + die2Value;
+            
+            // if both dice are the same, double the score
+            if (die1Value == die2Value)
+            {
+                score *= 2;
+            }
+            
+            // add the score to total
+            total += score;
+            
+            return total;
         }
     }
 }
