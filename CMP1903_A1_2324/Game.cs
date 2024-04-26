@@ -6,12 +6,12 @@ using System.Threading.Tasks;
 
 namespace CMP1903_A1_2324
 {
-    internal class Game
+    internal abstract class Game
     {
         // main method to run the program
         static void Main(string[] args)
         {
-            Statistics stats = new Statistics();
+            var stats = new Statistics();
             var userInput = 0;
             // loop until user enters a valid input of one of the below menu options
             while (true)
@@ -51,7 +51,7 @@ namespace CMP1903_A1_2324
                     var choice1 = PlayerChoice(); 
                     
                     // instantiate the Sevens Out game
-                    SevensOut sevensOut = new SevensOut();
+                    var sevensOut = new SevensOut();
                     sevensOut.RunGame(stats, choice1);
                     
                     // increment number of sevens out games played in statistics
@@ -63,7 +63,7 @@ namespace CMP1903_A1_2324
                     var choice2 = PlayerChoice();
                     
                     // instantiate the Three Or More game
-                    ThreeOrMore threeOrMore = new ThreeOrMore();
+                    var threeOrMore = new ThreeOrMore();
                     threeOrMore.RunGame(stats, choice2);
                     
                     // increment number of three or more games played in statistics
@@ -89,11 +89,13 @@ namespace CMP1903_A1_2324
                     Console.WriteLine("Number of games won by player1: " + currentStats[6]);
                     Console.WriteLine("Number of games won by player2: " + currentStats[7]);
                     Console.WriteLine("Number of games won by computer: " + currentStats[8]);
-                    
                     break;
+                
                 case 4:
-                    // perform tests in testing class  //todo
+                    // perform tests in the testing class
                     Console.WriteLine("Performing tests");
+                    var test = new Testing();
+                    test.TestGame();
                     break;
             }
             

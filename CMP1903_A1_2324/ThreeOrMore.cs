@@ -9,7 +9,7 @@ namespace CMP1903_A1_2324
     internal class ThreeOrMore
     {
         // starts an instance of the Three Or More game
-        internal void RunGame(Statistics stats, string playerType)
+        protected internal void RunGame(Statistics stats, string playerType)
         {
             Console.WriteLine("Three Or More game instantiated");
             
@@ -151,7 +151,7 @@ namespace CMP1903_A1_2324
                     if (playerType == "computer" && player == "player2")
                     {
                         // if computer, choose 1 or 2 randomly
-                        Random randomChoice = new Random();
+                        var randomChoice = new Random();
                         choice = randomChoice.Next(1, 3).ToString();
                     }
                     else
@@ -197,6 +197,7 @@ namespace CMP1903_A1_2324
             
             return points;
         }
-
+        
+        // todo test version of RollDice method
     }
 }

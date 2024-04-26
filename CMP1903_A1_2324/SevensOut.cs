@@ -9,7 +9,7 @@ namespace CMP1903_A1_2324
     internal class SevensOut
     {
         // starts an instance of the sevens out game
-        internal void RunGame(Statistics stats, string playerType)
+        protected internal void RunGame(Statistics stats, string playerType)
         {
             Console.WriteLine("\nSevens Out game instantiated");
 
@@ -126,7 +126,7 @@ namespace CMP1903_A1_2324
             System.Threading.Thread.Sleep(1);
             
             // create random object
-            Random random = new Random();
+            var random = new Random();
             
             // roll 2 dice by calling the RollDice method
             var die1Value = die1.Roll(random);
@@ -150,6 +150,12 @@ namespace CMP1903_A1_2324
 
             // return data to calling method to write to 
             return (total, score);
+        }
+        
+        // todo test version of RollDice method
+        public void RunTest()
+        {
+            //
         }
     }
 }

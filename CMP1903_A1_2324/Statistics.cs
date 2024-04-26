@@ -3,7 +3,7 @@ using System.IO;
 
 namespace CMP1903_A1_2324
 {
-    public class Statistics
+    internal class Statistics
     {
         // method to check if statistics file exists and create it if it doesn't with default values
         private void CheckFileExists()
@@ -19,6 +19,7 @@ namespace CMP1903_A1_2324
         // open file and read statistics data
         internal string[] ReadStatistics()
         {
+            // call method to make sure statistics file exists to prevent errors
             CheckFileExists();
             
             // read statistics data from file called statistics.txt
@@ -36,7 +37,6 @@ namespace CMP1903_A1_2324
             stats[statNumber] = statData;
             File.WriteAllText("statistics.txt", string.Join(",", stats));
         }
-        
         
         // method to increment a statistic by 1
         private void IncrementStat(int statNumber)
@@ -76,12 +76,13 @@ namespace CMP1903_A1_2324
             IncrementStat(3);
         }
         
-        // todo logic to check high score and update if necessary
         // update sevens out high score
         internal void SevensOutStatHighScore(int score)
         {
             var stats = ReadStatistics();
             var highScore = int.Parse(stats[4]);
+            
+            // check if score is higher than current high score and update if necessary
             if (score > highScore)
             {
                 WriteStatistics(4, score.ToString());
